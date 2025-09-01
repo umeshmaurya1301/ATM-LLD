@@ -9,7 +9,9 @@ import com.umesh.atm.dao.AtmMachine;
 import com.umesh.atm.service.AtmSessionService;
 import com.umesh.atm.service.BalanceService;
 import com.umesh.atm.service.CashService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,7 +69,14 @@ public class AtmTransactionController {
                 return ResponseEntity.badRequest().body(response);
             }
             
+            // Create session after successful authentication
+            String sessionId = sessionService.createSession(atmMachine, request.getCardToken());
+            
             response.put("authenticated", true);
+            response.put("sessionId", sessionId);
+            response.put("sessionTimeoutSeconds", sessionService.getSessionTimeoutSeconds());
+            response.put("message", "Authentication successful. Session created.");
+            
             return ResponseEntity.ok(response);
             
         } catch (Exception e) {
@@ -190,52 +199,62 @@ public class AtmTransactionController {
         }
     }
     
+    /**
+     * Terminates user session (logout).
+     */
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, Object>> logout(@RequestBody LogoutRequestDto request) {
+        log.info("Logout request for session: {}", request.getSessionId());
+        
+        try {
+            boolean terminated = sessionService.terminateSession(request.getSessionId());
+            
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", terminated);
+            response.put("message", terminated ? "Session terminated successfully" : "Session not found or already terminated");
+            
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            log.error("Error during logout", e);
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("message", "Logout service error");
+            errorResponse.put("errorCode", "LOGOUT_SERVICE_ERROR");
+            return ResponseEntity.internalServerError().body(errorResponse);
+        }
+    }
+    
     // DTOs for request handling
+    @Getter
+    @Setter
     public static class AuthenticationRequestDto {
         private String cardToken;
         private String pin;
         private String sessionId;
         private String clientIp;
         private String userAgent;
-        
-        // Getters and setters
-        public String getCardToken() { return cardToken; }
-        public void setCardToken(String cardToken) { this.cardToken = cardToken; }
-        public String getPin() { return pin; }
-        public void setPin(String pin) { this.pin = pin; }
-        public String getSessionId() { return sessionId; }
-        public void setSessionId(String sessionId) { this.sessionId = sessionId; }
-        public String getClientIp() { return clientIp; }
-        public void setClientIp(String clientIp) { this.clientIp = clientIp; }
-        public String getUserAgent() { return userAgent; }
-        public void setUserAgent(String userAgent) { this.userAgent = userAgent; }
     }
-    
+
+    @Getter
+    @Setter
     public static class WithdrawalRequestDto {
         private String cardToken;
         private String sessionId;
         private BigDecimal amount;
         private String pin;
-        
-        // Getters and setters
-        public String getCardToken() { return cardToken; }
-        public void setCardToken(String cardToken) { this.cardToken = cardToken; }
-        public String getSessionId() { return sessionId; }
-        public void setSessionId(String sessionId) { this.sessionId = sessionId; }
-        public BigDecimal getAmount() { return amount; }
-        public void setAmount(BigDecimal amount) { this.amount = amount; }
-        public String getPin() { return pin; }
-        public void setPin(String pin) { this.pin = pin; }
     }
-    
+
+    @Getter
+    @Setter
     public static class BalanceInquiryRequestDto {
         private String cardToken;
         private String sessionId;
-        
-        // Getters and setters
-        public String getCardToken() { return cardToken; }
-        public void setCardToken(String cardToken) { this.cardToken = cardToken; }
-        public String getSessionId() { return sessionId; }
-        public void setSessionId(String sessionId) { this.sessionId = sessionId; }
+    }
+
+    @Getter
+    @Setter
+    public static class LogoutRequestDto {
+        private String sessionId;
     }
 }
