@@ -1,0 +1,8 @@
+rootProject.name = 'atm_lld'
+
+include 'infra-audit'
+include 'infra-commons'
+include 'infra-core-module'
+include 'infra-cryptography'
+include 'infra-security'
+include 'infra-validation'
