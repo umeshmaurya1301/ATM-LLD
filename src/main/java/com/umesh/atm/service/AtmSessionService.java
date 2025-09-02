@@ -1,6 +1,6 @@
 package com.umesh.atm.service;
 
-import com.umesh.atm.dao.AtmMachine;
+import com.umesh.atm.entity.AtmMachine;
 
 import java.time.Instant;
 

@@ -5,7 +5,7 @@ import com.umesh.atm.chain.auth.AuthenticationChain;
 import com.umesh.atm.chain.auth.AuthenticationRequest;
 import com.umesh.atm.chain.transaction.TransactionProcessingChain;
 import com.umesh.atm.chain.transaction.TransactionRequest;
-import com.umesh.atm.dao.AtmMachine;
+import com.umesh.atm.entity.AtmMachine;
 import com.umesh.atm.service.AtmSessionService;
 import com.umesh.atm.service.BalanceService;
 import com.umesh.atm.service.CashService;

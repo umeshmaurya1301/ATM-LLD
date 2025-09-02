@@ -1,6 +1,6 @@
 package com.umesh.atm.service.impl;
 
-import com.umesh.atm.dao.AtmMachine;
+import com.umesh.atm.entity.AtmMachine;
 import com.umesh.atm.service.CashService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

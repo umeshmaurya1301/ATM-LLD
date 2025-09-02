@@ -1,6 +1,6 @@
 package com.umesh.atm.service.impl;
 
-import com.umesh.atm.dao.Card;
+import com.umesh.atm.entity.Card;
 import com.umesh.atm.enums.CardStatus;
 import com.umesh.atm.service.CardService;
 import org.springframework.stereotype.Service;

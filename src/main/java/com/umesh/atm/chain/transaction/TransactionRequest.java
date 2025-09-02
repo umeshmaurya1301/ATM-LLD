@@ -1,6 +1,6 @@
 package com.umesh.atm.chain.transaction;
 
-import com.umesh.atm.dao.AtmMachine;
+import com.umesh.atm.entity.AtmMachine;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

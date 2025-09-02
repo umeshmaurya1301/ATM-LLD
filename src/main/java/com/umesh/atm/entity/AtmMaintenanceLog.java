@@ -1,4 +1,4 @@
-package com.umesh.atm.dao;
+package com.umesh.atm.entity;
 
 import java.time.Instant;
 

@@ -1,6 +1,6 @@
 package com.umesh.atm.repository;
 
-import com.umesh.atm.dao.AtmSession;
+import com.umesh.atm.entity.AtmSession;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

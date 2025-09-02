@@ -1,7 +1,7 @@
 package com.umesh.atm.service.impl;
 
-import com.umesh.atm.dao.AtmMachine;
-import com.umesh.atm.dao.Transaction;
+import com.umesh.atm.entity.AtmMachine;
+import com.umesh.atm.entity.Transaction;
 import com.umesh.atm.enums.TxnStatus;
 import com.umesh.atm.service.TransactionService;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,6 @@
 package com.umesh.atm.service;
 
-import com.umesh.atm.dao.Card;
+import com.umesh.atm.entity.Card;
 import com.umesh.atm.enums.CardStatus;
 
 /**

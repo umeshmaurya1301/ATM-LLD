@@ -3,7 +3,7 @@ package com.umesh.atm.chain.auth.handlers;
 import com.umesh.atm.chain.Handler;
 import com.umesh.atm.chain.HandlerResult;
 import com.umesh.atm.chain.auth.AuthenticationRequest;
-import com.umesh.atm.dao.Card;
+import com.umesh.atm.entity.Card;
 import com.umesh.atm.service.CardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package com.umesh.atm.service.impl;
 
-import com.umesh.atm.dao.AtmMachine;
+import com.umesh.atm.entity.AtmMachine;
 import com.umesh.atm.service.AtmSessionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

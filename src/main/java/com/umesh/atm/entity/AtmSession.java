@@ -1,10 +1,10 @@
-package com.umesh.atm.dao;
+package com.umesh.atm.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
-import com.umesh.atm.entity.BaseEntity;
+import org.infra.commons.entity.BaseEntity;
 
 import java.time.Instant;
 
